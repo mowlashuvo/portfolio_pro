@@ -270,8 +270,8 @@
     justify-content: center;
 }
 
-/* Mobile override to ensure the desktop nav is hidden and the mobile button is visible
-   This lives here to avoid load-order conflicts with other CSS files. */
+/* Mobile override to ensure the desktop nav is hidden and the mobile button is visible.
+   Uses transform instead of negative right to avoid horizontal scrollbar on small screens. */
 @media (max-width: 768px) {
     .nav-links {
         display: none !important;
@@ -283,12 +283,38 @@
         justify-content: center;
     }
 
-    /* Make sure the drawer overlays header */
+    /* Keep drawer transform-based positioning (already set above) */
     .mobile-nav-drawer {
-        right: -320px;
+        width: 85vw;
+        max-width: 300px;
+    }
+}
+
+@media (max-width: 480px) {
+    .mobile-nav-drawer {
+        width: 80vw;
+        max-width: 280px;
     }
 
-    .mobile-nav-drawer.active {
-        right: 0;
+    .mobile-nav-header,
+    .mobile-nav-links,
+    .mobile-nav-footer {
+        padding: 16px;
+    }
+}
+
+@media (max-width: 360px) {
+    .mobile-nav-drawer {
+        width: 75vw;
+        max-width: 260px;
+    }
+
+    .mobile-nav-logo {
+        font-size: 1.2rem;
+    }
+
+    .mobile-nav-link {
+        padding: 12px 0;
+        font-size: 0.9rem;
     }
 }
