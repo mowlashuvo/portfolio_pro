@@ -181,7 +181,10 @@ section {
     box-shadow: var(--shadow);
     transition: var(--transition);
 }
-
+.glass-card:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-5px);
+}
 /* ===== RESPONSIVE DESIGN ===== */
 @media (max-width: 1200px) {
     .hero-text h1 {
