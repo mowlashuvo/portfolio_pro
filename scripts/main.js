@@ -49,33 +49,43 @@ document.addEventListener('DOMContentLoaded', function() {
                     top: targetElement.offsetTop - offset,
                     behavior: 'smooth'
                 });
+
+                // Highlight nav link immediately after click
+                document.querySelectorAll('.nav-link, .mobile-nav-link').forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === targetId) {
+                        link.classList.add('active');
+                    }
+                });
             }
         });
     });
-    
+
     // Active navigation link highlighting
     window.addEventListener('scroll', () => {
         const sections = document.querySelectorAll('section');
         const navLinks = document.querySelectorAll('.nav-link');
         const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
-        
+
         let currentSection = '';
-        
+
         sections.forEach(section => {
-            const sectionTop = section.offsetTop - 100;
+            const header = document.getElementById('header');
+            const headerHeight = header ? header.clientHeight : 80;
+            const sectionTop = section.offsetTop - headerHeight - 16;
             const sectionHeight = section.clientHeight;
             if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
                 currentSection = section.getAttribute('id');
             }
         });
-        
+
         navLinks.forEach(link => {
             link.classList.remove('active');
             if (link.getAttribute('href') === `#${currentSection}`) {
                 link.classList.add('active');
             }
         });
-        
+
         mobileNavLinks.forEach(link => {
             link.classList.remove('active');
             if (link.getAttribute('href') === `#${currentSection}`) {
